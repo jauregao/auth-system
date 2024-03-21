@@ -19,6 +19,14 @@ export const usersModel = {
       .first() as User;
   },
 
+  getUserLogin: async function (email: string): Promise<User> {
+    
+    return await knex('users')
+      .where({ email })
+      .returning('*')
+      .first() as User;
+  },
+
   update: async function (id: number, userData: User): Promise<User> {
 
     const user = await knex('users')
