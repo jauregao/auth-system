@@ -8,11 +8,7 @@ interface CustomRequest extends Request {
 
 const secretKey: Secret = process.env.JWT_SECRET_KEY!
 
-export const verifyUserIsLogged = async (
-  req: CustomRequest,
-  res: Response,
-  next: NextFunction
-): Promise<void | Object> => {
+export const verifyUserIsLogged = async ( req: CustomRequest, res: Response, next: NextFunction ): Promise<void | Object> => {
   const { authorization } = req.headers
 
   if (!authorization) return res.status(401).json({ message: 'Não autorizado' })
