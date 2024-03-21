@@ -2,11 +2,12 @@ import { knex } from '../connections/connections';
 import { User } from '../types';
 
 export const usersModel = {
-  create: async function (userData: User): Promise<User> {
+  create: async function (userData: Omit<User, 'id'>): Promise<User> {
 
-    const createdUser = await knex('users').insert(userData).returning('id');
+    await knex('users')
+        .insert(userData)
 
-    const user = await this.getUser(createdUser) as User
+    const user = await this.getUserByEmail(userData.email) as User
 
     return user
   },
@@ -14,12 +15,12 @@ export const usersModel = {
   getUser: async function (id: number): Promise<User> {
     
     return await knex('users')
-      .select('full_name', 'email', 'registration_date')
       .where({ id })
+      .returning(['id', 'full_name', 'email'])
       .first() as User;
   },
 
-  getUserLogin: async function (email: string): Promise<User> {
+  getUserByEmail: async function (email: string): Promise<User> {
     
     return await knex('users')
       .where({ email })

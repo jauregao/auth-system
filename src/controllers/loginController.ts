@@ -27,8 +27,7 @@ export const loginController = {
       usuario: {
         id: userData.id,
         nome: userData.full_name,
-        email: userData.email,
-        data_cadastro: userData.registration_date
+        email: userData.email
       },
       token: token,
     })
