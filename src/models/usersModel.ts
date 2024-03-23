@@ -33,12 +33,11 @@ export const usersModel = {
     const user = await knex('users')
         .update(userData)
         .where({ id })
-        .returning('*')
-        .first() as User
+        .returning('*') 
 
-    const {pass, ...updatedUserData} = user
+    const {pass, ...updatedUserData} = user[0]
 
-    return updatedUserData as User
+    return updatedUserData 
   },
 
   delete: async function (id: number): Promise<Object> {
