@@ -1,4 +1,4 @@
-import { User, UserLogin } from './../types';
+import { UserLogin } from './../types';
 import { loginService } from "../services/loginService"
 import jwt, { Secret } from 'jsonwebtoken'
 import { Request, Response } from 'express'
@@ -8,7 +8,6 @@ const secretKey: Secret = process.env.JWT_SECRET_KEY!
 const expires = process.env.JWT_EXPIRED
 
 export const loginController = {
-
   async handle(req: Request, res: Response) {
 
     const userLoginData: UserLogin = req.body

@@ -1,5 +1,11 @@
 import { Router } from 'express'
-import { loginController, createUserController, getUserController, updateUserController, updatePassController, deleteUserController } from '../controllers'
+import { loginController,
+        createUserController,
+        getUserController,
+        updateUserController,
+        updatePassController,
+        deleteUserController
+    } from '../controllers'
 import { verifyEmailAlredyExists } from '../middlewares/verifyEmailExists'
 import { verifyUserIsLogged } from '../middlewares/verifyUserIsLogged'
 
