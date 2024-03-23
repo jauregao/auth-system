@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { loginController, createUserController } from '../controllers'
+import { loginController, createUserController, getUserController } from '../controllers'
 import { verifyEmailAlredyExists } from '../middlewares/verifyEmailExists'
 import { verifyUserIsLogged } from '../middlewares/verifyUserIsLogged'
 
@@ -16,7 +16,8 @@ userRoutes.post('/login',
   )
 
 userRoutes.get('/usuario',
-  verifyUserIsLogged
+  verifyUserIsLogged,
+  getUserController.handle
   )
 
 userRoutes.put('/usuario',
