@@ -1,3 +1,5 @@
+import { Request } from "express"
+
 export type User = {
   id: number
   email: string
@@ -10,3 +12,8 @@ export type UserLogin = {
   pass: string
 }
 
+export interface CustomRequest extends Request {
+  usuario?: User
+}
+
+export type OmitedUserId = Omit<User, 'id'>

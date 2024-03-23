@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
-import { User } from '../types'
+import { OmitedUserId, User } from '../types'
 import { createUserService } from '../services/createUserService'
 
 export const createUserController = {
   async handle(req: Request, res: Response) {
 
-    const userData: Omit<User, 'id'> = req.body
+    const userData: OmitedUserId = req.body
     
     if(!userData) return {message: 'Todos os dados precisam ser informados.'}
     

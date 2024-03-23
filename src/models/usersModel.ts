@@ -28,7 +28,7 @@ export const usersModel = {
       .first() as User;
   },
 
-  update: async function (id: number, userData: User): Promise<User> {
+  update: async function (id: number, userData: Omit<User, 'id'>): Promise<User> {
 
     const user = await knex('users')
         .update(userData)

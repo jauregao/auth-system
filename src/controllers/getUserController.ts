@@ -1,10 +1,6 @@
 import { getUserService } from '../services/getUserService'
-import { Request, Response } from 'express'
-import { User } from '../types'
-
-interface CustomRequest extends Request {
-  usuario?: User
-}
+import { Response } from 'express'
+import { CustomRequest } from '../types'
 
 export const getUserController = {
   async handle(req: CustomRequest, res: Response) {
