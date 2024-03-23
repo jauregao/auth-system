@@ -49,7 +49,7 @@ export const usersModel = {
     return { message: 'Usuário deletado com sucesso' }
   },
 
-  changePass: async function (id: number, userPass: User) {
+  changePass: async function (id: number, userPass: string) {
 
     await knex('users').update({ pass: userPass }).where({ id })
 

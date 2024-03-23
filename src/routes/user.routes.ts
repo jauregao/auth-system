@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { loginController, createUserController, getUserController, updateUserController } from '../controllers'
+import { loginController, createUserController, getUserController, updateUserController, updatePassController } from '../controllers'
 import { verifyEmailAlredyExists } from '../middlewares/verifyEmailExists'
 import { verifyUserIsLogged } from '../middlewares/verifyUserIsLogged'
 
@@ -26,7 +26,8 @@ userRoutes.put('/usuario',
   )
 
 userRoutes.put('/usuario/recuperar-senha',
-  verifyUserIsLogged
+  verifyUserIsLogged,
+  updatePassController.handle
   )
 
 userRoutes.delete('/usuario',
