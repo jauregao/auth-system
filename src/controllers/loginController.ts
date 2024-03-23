@@ -8,16 +8,18 @@ const secretKey: Secret = process.env.JWT_SECRET_KEY!
 const expires = process.env.JWT_EXPIRED
 
 export const loginController = {
+
   async handle(req: Request, res: Response) {
 
-    try {
-      const userLoginData: UserLogin = req.body
+    const userLoginData: UserLogin = req.body
 
-      const userData = await loginService.execute(userLoginData.email) as User
+    try {
+
+      const userData = await loginService.execute(userLoginData.email)
 
       if (!userData) return res.status(403).json({ message: 'Usuário e/ou senha inválido(s)' })
       
-      const validPass = await comparePasswords(userData.pass, userLoginData.pass)
+      const validPass = await comparePasswords(userLoginData.pass, userData.pass)
       
       if (!validPass) return res.status(403).json({ message: 'Usuário e/ou senha inválido(s)' })
 
